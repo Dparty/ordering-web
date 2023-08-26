@@ -1,0 +1,43 @@
+.submit-button {
+  width: 100%;
+  height: 49px;
+  background: #212526;
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.submit-button__img {
+  width: 39px;
+  height: 39px;
+  margin-left: 5px;
+}
+
+.submit-button__money {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 30px;
+  text-align: left;
+  flex: 1;
+  margin-left: 11px;
+}
+
+.submit-button__text {
+  width: 98px;
+  height: 49px;
+  line-height: 49px;
+  border-radius: 0 40px 40px 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.submit-button_text-bg-disable {
+  background: url('../../assets/png/disable.png');
+}
+
+.submit-button_text-bg-usable {
+  background: url('../../assets/png/usable.png');
+}
