@@ -1,43 +1,59 @@
 .submit-button {
   width: 100%;
-  height: 49px;
-  background: #212526;
+  height: var(--order-botton-btn-height);
   border-radius: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.submit-button__img {
+.submit-button__left {
+  border-radius: 40px 0 0 40px;
+  background: #212526;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  height: 49px;
+}
+
+.submit-button__left-img {
   width: 39px;
   height: 39px;
   margin-left: 5px;
 }
 
-.submit-button__money {
-  font-size: 20px;
+.submit-button__left-price {
   font-weight: 600;
   color: #ffffff;
   line-height: 30px;
   text-align: left;
   flex: 1;
   margin-left: 11px;
+  font-size: 14px;
+}
+.submit-button__left-price > span {
+  font-size: 20px;
+  margin-left: 5px;
 }
 
 .submit-button__text {
   width: 98px;
-  height: 49px;
-  line-height: 49px;
+  height: var(--order-botton-btn-height);
+  line-height: var(--order-botton-btn-height);
   border-radius: 0 40px 40px 0;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .submit-button_text-bg-disable {
-  background: url('../../assets/png/disable.png');
+  background: linear-gradient(135deg, #f4f4f4 0%, #bbbbbb 100%);
+  color: rgba(139, 139, 139, 1);
 }
 
 .submit-button_text-bg-usable {
-  background: url('../../assets/png/usable.png');
+  background: linear-gradient(135deg, #e9c286 0%, #b18449 100%);
+  color: #ffffff;
 }

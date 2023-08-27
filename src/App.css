@@ -40,6 +40,6 @@
 }
 
 .page-container {
-  height: calc(100% - 50px);
+  height: calc(100% - var(--header-height));
   width: 100%;
 }
