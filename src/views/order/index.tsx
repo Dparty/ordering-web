@@ -1,11 +1,11 @@
 import './index.css'
 import foodIntroductionUrl from '../../assets/png/food-introduction.png'
 import SubmitButton from '../../components/SubmitButton'
-import Cart from './Cart'
+import Cart from './components/Cart'
 import { useCallback, useEffect, useState } from 'react'
-import FoodCard from './FoodCard'
-import Menu from './Menu'
-import SelectSpecifications from './SelectSpecifications'
+import FoodCard from './components/FoodCard'
+import Menu from './components/Menu'
+import SelectSpecifications from './components/SelectSpecifications'
 
 export enum FoodType {
   NORMAL = 'normal',

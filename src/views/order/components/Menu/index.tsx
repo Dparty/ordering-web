@@ -1,4 +1,4 @@
-import { FoodProps, FoodType } from '..'
+import { FoodProps, FoodType } from '../../index'
 import FoodCard from '../FoodCard'
 import './index.css'
 

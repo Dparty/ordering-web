@@ -1,9 +1,9 @@
 import React from 'react'
-import exampleFoodPngUrl from '../../../assets/png/example.png'
-import reducePngUrl from '../../../assets/png/reduce.png'
-import addPngUrl from '../../../assets/png/add.png'
+import exampleFoodPngUrl from '../../../../assets/png/example.png'
+import reducePngUrl from '../../../../assets/png/reduce.png'
+import addPngUrl from '../../../../assets/png/add.png'
 import './index.css'
-import { FoodProps, FoodType } from '../index'
+import { FoodProps, FoodType } from '../../index'
 
 export enum FoodCardActionType {
   SPECIFICATIONS = 'specifications',
