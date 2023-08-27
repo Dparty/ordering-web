@@ -1,9 +1,9 @@
 import './index.css'
-import cancelPngUrl from '../../../assets/png/cancel.png'
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
-import { FoodProps, FoodType } from '..'
+import cancelPngUrl from '../../../../assets/png/cancel.png'
+import { useEffect, useState } from 'react'
+import { FoodProps, FoodType } from '../../index'
 import SpecificationsOptions, { SpecificationsOptionsProps } from '../SpecificationsOptions'
-import utils from '../../../utils/index'
+import utils from '../../../../utils/index'
 
 interface IProps {
   food?: FoodProps

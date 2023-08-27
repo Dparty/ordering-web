@@ -1,5 +1,5 @@
 import './index.css'
-import cancelPngUrl from '../../../assets/png/cancel.png'
+import cancelPngUrl from '../../../../assets/png/cancel.png'
 import { ReactNode } from 'react'
 
 interface IProps {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './index.css'
-import Tag from '../../../components/Tag'
+import Tag from '../../../../components/Tag'
 
 export interface SpecificationsOptionsProps {
   value: string
