@@ -6,6 +6,8 @@ import { useCallback, useEffect, useState } from 'react'
 import FoodCard from './components/FoodCard'
 import Menu from './components/Menu'
 import SelectSpecifications from './components/SelectSpecifications'
+import { useNavigate } from 'react-router-dom'
+import Message from '../../components/Message'
 
 export enum FoodType {
   NORMAL = 'normal',
@@ -40,7 +42,7 @@ const specificationTags = specifications.map(i => ({
 const mockfoods: FoodProps[] = [
   {
     id: 1,
-    name: '菜品1',
+    name: '菜品100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠',
     desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
     price: 28,
     count: 0,
@@ -53,7 +55,7 @@ const mockfoods: FoodProps[] = [
   },
   {
     id: 2,
-    name: '菜品2',
+    name: '菜品200+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠',
     desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
     price: 27,
     count: 0,
@@ -66,7 +68,7 @@ const mockfoods: FoodProps[] = [
   },
   {
     id: 3,
-    name: '菜品3',
+    name: '菜品300+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠',
     desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
     price: 55,
     count: 0,
@@ -77,7 +79,7 @@ const mockfoods: FoodProps[] = [
   },
   {
     id: 4,
-    name: '菜品4',
+    name: '菜品400+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠',
     desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
     price: 99,
     count: 0,
@@ -124,18 +126,32 @@ const mockfoods: FoodProps[] = [
 ]
 
 const Order = () => {
-  const [cartVisiable, setCartVisiable] = useState<boolean>(false)
-  const [selectSpecificationsVisiable, setSelectSpecificationsVisiable] = useState<boolean>(false)
+  const navigate = useNavigate()
 
+  const sessionStorageSelectedFoods = sessionStorage.getItem('selectedFoods')
+  const sessionStoragePrice = sessionStorage.getItem('price')
+
+  const [cartVisiable, setCartVisiable] = useState<boolean>(false)
+  //需要选规格的食物。在总的food列表进行add操作时，每次都需要弹出选规格弹框，在购物车进行add操作时不用弹出。
+  const [selectSpecificationsVisiable, setSelectSpecificationsVisiable] = useState<boolean>(false)
+  //总food列表（从后端请求回来的）
   const [foods, setFoods] = useState<FoodProps[]>(mockfoods)
 
   //购物车里的food
-  const [selectedFoods, setSelectedFoods] = useState<FoodProps[]>([])
-  const [price, setPrice] = useState(0)
+  const [selectedFoods, setSelectedFoods] = useState<FoodProps[]>(
+    sessionStorageSelectedFoods ? JSON.parse(sessionStorageSelectedFoods) : []
+  )
+  const [price, setPrice] = useState(sessionStoragePrice ? JSON.parse(sessionStoragePrice) : 0)
   //当前要选规格的food，也就是弹出选规格框的food
   const [selectSpecificationsFood, setSelectSpecificationsFood] = useState<FoodProps>()
 
-  const onSubmit = () => {}
+  const [showMessage, setShowMessage] = useState(false)
+
+  const onSubmit = () => {
+    if (selectedFoods.length > 0) {
+      navigate('/submit')
+    }
+  }
 
   const showCart = () => {
     setCartVisiable(!cartVisiable)
@@ -154,6 +170,15 @@ const Order = () => {
     setSelectSpecificationsVisiable(false)
     setSelectSpecificationsFood(undefined)
   }
+
+  const handleShowMessage = () => {
+    setShowMessage(true)
+  }
+
+  const handleCloseMessage = () => {
+    setShowMessage(false)
+  }
+
   const changeFood = (foodId: number, count: number) => {
     const _foods = foods.map(food => {
       if (food.id === foodId) {
@@ -178,15 +203,16 @@ const Order = () => {
       if (type === FoodType.NORMAL) {
         _selectedFoods = selectedFoods.map(sf => {
           if (sf.id === food.id) {
-            return { ...sf, count: sf.count + count, specifications, remark }
+            return { ...sf, count: sf.count + count, remark }
           } else {
             return sf
           }
         })
       } else {
         _selectedFoods = selectedFoods.map(sf => {
+          //如果是选中的food 需要规格（specifications）一致才算是同一个食物（总列表没有保存规格）
           if (sf.id === food.id && JSON.stringify(sf.specifications) === JSON.stringify(changeSpecifications)) {
-            return { ...sf, count: sf.count + count, specifications, remark }
+            return { ...sf, count: sf.count + count, specifications: changeSpecifications, remark }
           } else {
             return sf
           }
@@ -194,14 +220,17 @@ const Order = () => {
       }
     } else {
       food.count = count
-      changeSpecifications && (food.specifications = changeSpecifications)
-      remark && (food.remark = remark)
+      if (type === FoodType.SPECIFICATIONS) {
+        food.specifications = changeSpecifications
+      }
+      food.remark = remark
       _selectedFoods.push(food)
     }
     setSelectedFoods(_selectedFoods)
   }
 
   const addFood = (type: FoodType, food: FoodProps, count: number, changeSpecifications?: Record<string, string>, remark?: string) => {
+    //改变总列表的food数量
     changeFood(food.id, count)
     let hasExist = []
     if (type == FoodType.NORMAL) {
@@ -212,26 +241,34 @@ const Order = () => {
       )
       cancelSelectSpecifications()
     }
+    //改变购物车food的数量
     changeSelectedFoods(type, hasExist, food, count, changeSpecifications, remark)
   }
 
   const reduceFood = useCallback(
     (type: FoodType, food: FoodProps, count: number, changeSpecifications?: Record<string, string>, remark?: string) => {
-      const _foods = foods.map(food => {
-        if (food.id === food.id) {
-          let _count = food.count
-          if (food.count > count) {
-            _count = _count - count
-          } else {
+      if ((type = FoodType.SPECIFICATIONS)) {
+        handleShowMessage()
+        showCart()
+        return
+      }
+      //总列表food减数量
+      const _foods = foods.map(_food => {
+        if (_food.id === food.id) {
+          let _count = _food.count
+          if (food.count === count || food.count === 0) {
             _count = 0
+          } else {
+            _count = food.count - count
           }
-          return { ...food, count: _count }
+          return { ..._food, count: _count }
         } else {
-          return food
+          return _food
         }
       })
-      setFoods(_foods)
+      setFoods([..._foods])
 
+      //购物车food减数量
       const index = selectedFoods.indexOf(food)
       const _selectedFoods = [...selectedFoods]
       if (index > -1) {
@@ -243,7 +280,7 @@ const Order = () => {
           _selectedFoods[index].count = selectedFoods[index].count - count
         }
       }
-      setSelectedFoods(_selectedFoods)
+      setSelectedFoods([..._selectedFoods])
     },
     [selectedFoods]
   )
@@ -259,12 +296,21 @@ const Order = () => {
   }
 
   useEffect(() => {
-    localStorage.setItem('selectedFoods', JSON.stringify(selectedFoods))
+    //刷新以后从localstorge中拿到信息回显
+    if (selectedFoods.length > 0) {
+      selectedFoods.forEach(i => changeFood(i.id, i.count))
+    }
+  }, [])
+
+  //将购物车信息存在localstorge中
+  useEffect(() => {
+    sessionStorage.setItem('selectedFoods', JSON.stringify(selectedFoods))
     countPrice()
   }, [selectedFoods])
 
+  //将购总价存在localstorge中
   useEffect(() => {
-    localStorage.setItem('price', JSON.stringify(price))
+    sessionStorage.setItem('price', JSON.stringify(price))
   }, [price])
 
   return (
@@ -301,6 +347,7 @@ const Order = () => {
           onSubmit={onSubmit}
           btnText="选好了"
           price={price}
+          showCartImg
         ></SubmitButton>
       </div>
       {/* 选规格modal */}
@@ -311,6 +358,7 @@ const Order = () => {
         onCancel={cancelSelectSpecifications}
         onAdd={addFood}
       ></SelectSpecifications>
+      {showMessage && <Message message="请在购物车中操作" onClose={handleCloseMessage} />}
     </div>
   )
 }

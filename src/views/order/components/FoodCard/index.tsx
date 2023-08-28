@@ -23,7 +23,7 @@ const FoodCard: React.FC<IProps> = ({ food, type, onAdd, onReduce, onSelect }) =
 
   const add = () => {
     if (foodType === FoodType.NORMAL || type === 'cart') {
-      onAdd(foodType, food, 1, food.specifications, food.remark)
+      onAdd(foodType, food, 1, food.specifications ? food.specifications : {}, food.remark ? food.remark : '')
     } else {
       onSelect(food)
     }
@@ -33,7 +33,10 @@ const FoodCard: React.FC<IProps> = ({ food, type, onAdd, onReduce, onSelect }) =
     if ((food.specifications && food.count > 0) || !food.specifications) {
       return (
         <div className="food-card__action-normal">
-          <div className="action-btn" onClick={() => onReduce(foodType, food, 1, food.specifications, food.remark)}>
+          <div
+            className="action-btn"
+            onClick={() => onReduce(foodType, food, 1, food.specifications ? food.specifications : {}, food.remark ? food.remark : '')}
+          >
             <img src={reducePngUrl} alt="减" />
           </div>
           <div className="action-normal-number">{food.count}</div>
