@@ -34,6 +34,8 @@
   font-size: 15px;
   font-weight: 600;
   color: #181818;
+  height: 47px;
+  line-height: 47px;
 }
 
 .cart__content-header-cancel .cancel-img {

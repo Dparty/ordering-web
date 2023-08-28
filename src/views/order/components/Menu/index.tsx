@@ -13,13 +13,7 @@ const Cart: React.FC<IProps> = ({ foods, onAdd, onReduce, onSelect }) => {
   return (
     <div className="menu">
       {foods.map(food => (
-        <FoodCard
-          key={food.id}
-          food={food}
-          onAdd={(type, food, count) => onAdd(type, food, count)}
-          onReduce={(type, food, count) => onReduce(type, food, count)}
-          onSelect={onSelect}
-        />
+        <FoodCard key={food.id} food={food} onAdd={onAdd} onReduce={onReduce} onSelect={onSelect} />
       ))}
     </div>
   )

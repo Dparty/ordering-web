@@ -33,6 +33,9 @@
   font-size: 15px;
   font-weight: 600;
   color: #181818;
+  white-space: nowrap; /* 禁止换行 */
+  overflow: hidden; /* 隐藏溢出部分 */
+  text-overflow: ellipsis; /* 使用省略号表示溢出的文本 */
 }
 
 .select-specifications__content-header-cancel .cancel-img {

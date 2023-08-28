@@ -76,7 +76,15 @@ const SelectSpecifications: React.FC<IProps> = ({ food, visiable, specificationT
                     ? ' specifications-submit-btn-usable'
                     : ' specifications-submit-btn-disable'
                 }`}
-                onClick={() => onAdd(FoodType.SPECIFICATIONS, currentFood!, 1, currentFood?.specifications, currentFood!.remark)}
+                onClick={() =>
+                  onAdd(
+                    FoodType.SPECIFICATIONS,
+                    currentFood!,
+                    1,
+                    currentFood?.specifications ? currentFood?.specifications : {},
+                    currentFood?.remark ? currentFood.remark : ''
+                  )
+                }
               >
                 + 加入购物车
               </button>
