@@ -20,7 +20,7 @@
 }
 
 .order_top-menu {
-  padding: 0 var(--order-padding);
+  /* padding: 0 var(--order-padding); */
   flex: 1;
   overflow-y: scroll;
 }

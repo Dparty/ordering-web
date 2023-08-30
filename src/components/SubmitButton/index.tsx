@@ -9,14 +9,19 @@ interface IProps {
   price: number
   disable?: boolean
   showCartImg?: boolean
+  count: number
 }
 
-const SubmitButton: React.FC<IProps> = ({ onShow, onSubmit, btnText, price, disable, showCartImg }) => {
+const SubmitButton: React.FC<IProps> = ({ onShow, onSubmit, btnText, price, disable, showCartImg, count }) => {
   return (
     <div className="submit-button">
       <div className="submit-button__left" onClick={onShow}>
-        {showCartImg && <img className="submit-button__left-img" src={shoppingCartPngUrl} alt="购物车" />}
-
+        {showCartImg && (
+          <div className="submit-button__left-cart">
+            <span className="cart-count">{count}</span>
+            <img className="cart-img" src={shoppingCartPngUrl} alt="购物车" />
+          </div>
+        )}
         <div className="submit-button__left-price">
           ¥<span>{price}</span>
         </div>
