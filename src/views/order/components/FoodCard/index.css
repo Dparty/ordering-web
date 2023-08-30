@@ -29,12 +29,6 @@
   width: 100%;
 }
 
-.text-ellipsis {
-  white-space: nowrap; /* 禁止换行 */
-  overflow: hidden; /* 隐藏溢出部分 */
-  text-overflow: ellipsis; /* 使用省略号表示溢出的文本 */
-}
-
 .food-card__info-name {
   text-align: left;
   font-size: 15px;
@@ -42,6 +36,7 @@
 }
 
 .food-card__info-desc {
+  text-align: left;
   font-size: 12px;
   font-weight: 400;
   margin-top: 4px;

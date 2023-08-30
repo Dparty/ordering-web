@@ -43,3 +43,9 @@
   height: calc(100% - var(--header-height));
   width: 100%;
 }
+
+.text-ellipsis {
+  white-space: nowrap; /* 禁止换行 */
+  overflow: hidden; /* 隐藏溢出部分 */
+  text-overflow: ellipsis; /* 使用省略号表示溢出的文本 */
+}

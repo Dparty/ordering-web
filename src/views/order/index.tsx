@@ -147,6 +147,8 @@ const Order = () => {
 
   const [showMessage, setShowMessage] = useState(false)
 
+  const [cartCount, setCartCount] = useState(0)
+
   const onSubmit = () => {
     if (selectedFoods.length > 0) {
       navigate('/submit')
@@ -154,6 +156,9 @@ const Order = () => {
   }
 
   const showCart = () => {
+    if (selectedFoods.length === 0) {
+      return
+    }
     setCartVisiable(!cartVisiable)
   }
 
@@ -295,6 +300,16 @@ const Order = () => {
     setPrice(_price)
   }
 
+  const countCartNumber = () => {
+    let _count = 0
+    if (selectedFoods.length > 0) {
+      selectedFoods.forEach(i => {
+        _count = _count + i.count
+      })
+    }
+    setCartCount(_count)
+  }
+
   useEffect(() => {
     //刷新以后从localstorge中拿到信息回显
     if (selectedFoods.length > 0) {
@@ -306,12 +321,14 @@ const Order = () => {
   useEffect(() => {
     sessionStorage.setItem('selectedFoods', JSON.stringify(selectedFoods))
     countPrice()
+    countCartNumber()
   }, [selectedFoods])
 
   //将购总价存在localstorge中
   useEffect(() => {
     sessionStorage.setItem('price', JSON.stringify(price))
-  }, [price])
+    sessionStorage.setItem('cartCount', JSON.stringify(cartCount))
+  }, [price, cartCount])
 
   return (
     <div className="order page-container">
@@ -322,7 +339,7 @@ const Order = () => {
         </div>
         {/* 中间滚动的menu */}
         <div className="order_top-menu">
-          <Menu foods={foods} onAdd={addFood} onReduce={reduceFood} onSelect={showSelectSpecifications} />
+          <Menu onAdd={addFood} onReduce={reduceFood} onSelect={showSelectSpecifications} />
         </div>
         {/* 购物车 如果购物车是空的不会弹起 */}
         <Cart title="购物车" visiable={cartVisiable} onCancel={cancelCart}>
@@ -343,6 +360,7 @@ const Order = () => {
       <div className="order_bottom">
         <SubmitButton
           disable={selectedFoods.length === 0}
+          count={cartCount}
           onShow={showCart}
           onSubmit={onSubmit}
           btnText="选好了"
