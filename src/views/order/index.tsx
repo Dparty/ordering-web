@@ -39,89 +39,419 @@ const specificationTags = specifications.map(i => ({
   options: Object.values(i)[0]
 }))
 
-const mockfoods: FoodProps[] = [
+export interface MenuProps {
+  id: string
+  type: string
+  items: FoodProps[]
+}
+
+const mockMenus: MenuProps[] = [
   {
-    id: 1,
-    name: '菜品100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠',
-    desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
-    price: 28,
-    count: 0,
-    specifications: {
-      weight: '',
-      aaa: '',
-      bbb: ''
-    },
-    remark: ''
+    id: '1111',
+    type: '刺身拼盘1刺身拼盘1刺身拼盘1刺身拼盘1刺身拼盘1',
+    items: [
+      {
+        id: 1,
+        name: '菜品100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 28,
+        count: 0,
+        specifications: {
+          weight: '',
+          aaa: '',
+          bbb: ''
+        },
+        remark: ''
+      },
+      {
+        id: 2,
+        name: '菜品200+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 27,
+        count: 0,
+        specifications: {
+          weight: '',
+          aaa: '',
+          bbb: ''
+        },
+        remark: ''
+      },
+      {
+        id: 3,
+        name: '菜品300+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 55,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 4,
+        name: '菜品400+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 99,
+        count: 0,
+        specifications: {
+          weight: '',
+          aaa: '',
+          bbb: ''
+        },
+        remark: ''
+      }
+    ]
   },
   {
-    id: 2,
-    name: '菜品200+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠',
-    desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
-    price: 27,
-    count: 0,
-    specifications: {
-      weight: '',
-      aaa: '',
-      bbb: ''
-    },
-    remark: ''
+    id: '2222',
+    type: '寿司拼盘2',
+    items: [
+      {
+        id: 5,
+        name: '菜品5',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 4,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 6,
+        name: '菜品6',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 78,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 7,
+        name: '菜品7',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 58,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      }
+    ]
   },
   {
-    id: 3,
-    name: '菜品300+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠',
-    desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
-    price: 55,
-    count: 0,
-    // specifications: {
-    //   size: 'large'
-    // },
-    remark: ''
+    id: '3333',
+    type: '寿司拼盘3',
+    items: [
+      {
+        id: 8,
+        name: '菜品8',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 4,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 9,
+        name: '菜品9',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 78,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 10,
+        name: '菜品10',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 58,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      }
+    ]
   },
   {
-    id: 4,
-    name: '菜品400+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠',
-    desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
-    price: 99,
-    count: 0,
-    specifications: {
-      weight: '',
-      aaa: '',
-      bbb: ''
-    },
-    remark: ''
+    id: '4444',
+    type: '寿司拼盘4',
+    items: [
+      {
+        id: 11,
+        name: '菜品51',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 4,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 12,
+        name: '菜品61',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 78,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 71,
+        name: '菜品71',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 58,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      }
+    ]
   },
   {
-    id: 5,
-    name: '菜品5',
-    desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
-    price: 4,
-    count: 0,
-    // specifications: {
-    //   size: 'large'
-    // },
-    remark: ''
+    id: '5555',
+    type: '寿司拼盘5',
+    items: [
+      {
+        id: 52,
+        name: '菜品52',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 4,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 62,
+        name: '菜品62',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 78,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 72,
+        name: '菜品72',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 58,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      }
+    ]
   },
   {
-    id: 6,
-    name: '菜品6',
-    desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
-    price: 78,
-    count: 0,
-    // specifications: {
-    //   size: 'large'
-    // },
-    remark: ''
+    id: '6666',
+    type: '寿司拼盘6',
+    items: [
+      {
+        id: 53,
+        name: '菜品53',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 4,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 63,
+        name: '菜品63',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 78,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 73,
+        name: '菜品73',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 58,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      }
+    ]
   },
   {
-    id: 7,
-    name: '菜品7',
-    desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
-    price: 58,
-    count: 0,
-    // specifications: {
-    //   size: 'large'
-    // },
-    remark: ''
+    id: '7777',
+    type: '寿司拼盘7',
+    items: [
+      {
+        id: 54,
+        name: '菜品54',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 4,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 64,
+        name: '菜品64',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 78,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 74,
+        name: '菜品74',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 58,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      }
+    ]
+  },
+  {
+    id: '8888',
+    type: '寿司拼盘8',
+    items: [
+      {
+        id: 55,
+        name: '菜品55',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 4,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 65,
+        name: '菜品65',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 78,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 75,
+        name: '菜品75',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 58,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      }
+    ]
+  },
+  {
+    id: '9999',
+    type: '寿司拼盘9',
+    items: [
+      {
+        id: 56,
+        name: '菜品56',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 4,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 66,
+        name: '菜品66',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 78,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 76,
+        name: '菜品76',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 58,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      }
+    ]
+  },
+  {
+    id: '101010',
+    type: '寿司拼盘10',
+    items: [
+      {
+        id: 57,
+        name: '菜品57',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 4,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 67,
+        name: '菜品67',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 78,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      },
+      {
+        id: 77,
+        name: '菜品77',
+        desc: '月售100+菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭菠萝饭',
+        price: 58,
+        count: 0,
+        // specifications: {
+        //   size: 'large'
+        // },
+        remark: ''
+      }
+    ]
   }
 ]
 
@@ -135,7 +465,7 @@ const Order = () => {
   //需要选规格的食物。在总的food列表进行add操作时，每次都需要弹出选规格弹框，在购物车进行add操作时不用弹出。
   const [selectSpecificationsVisiable, setSelectSpecificationsVisiable] = useState<boolean>(false)
   //总food列表（从后端请求回来的）
-  const [foods, setFoods] = useState<FoodProps[]>(mockfoods)
+  const [menus, setMenus] = useState<MenuProps[]>(mockMenus)
 
   //购物车里的food
   const [selectedFoods, setSelectedFoods] = useState<FoodProps[]>(
@@ -185,14 +515,17 @@ const Order = () => {
   }
 
   const changeFood = (foodId: number, count: number) => {
-    const _foods = foods.map(food => {
-      if (food.id === foodId) {
-        return { ...food, count: food.count + count }
-      } else {
-        return food
-      }
+    const _menus = menus.map(menu => {
+      menu.items = menu.items.map(food => {
+        if (food.id === foodId) {
+          return { ...food, count: food.count + count }
+        } else {
+          return food
+        }
+      })
+      return menu
     })
-    setFoods(_foods)
+    setMenus(_menus)
   }
 
   const changeSelectedFoods = (
@@ -252,30 +585,32 @@ const Order = () => {
 
   const reduceFood = useCallback(
     (type: FoodType, food: FoodProps, count: number, changeSpecifications?: Record<string, string>, remark?: string) => {
-      if ((type = FoodType.SPECIFICATIONS)) {
+      if (type === FoodType.SPECIFICATIONS) {
         handleShowMessage()
         showCart()
         return
       }
-      //总列表food减数量
-      const _foods = foods.map(_food => {
-        if (_food.id === food.id) {
-          let _count = _food.count
-          if (food.count === count || food.count === 0) {
-            _count = 0
+      const _menus = menus.map(menu => {
+        menu.items = menu.items.map(_food => {
+          if (_food.id === food.id) {
+            let _count = _food.count
+            if (food.count === count || food.count === 0) {
+              _count = 0
+            } else {
+              _count = food.count - count
+            }
+            return { ..._food, count: _count }
           } else {
-            _count = food.count - count
+            return _food
           }
-          return { ..._food, count: _count }
-        } else {
-          return _food
-        }
+        })
+        return menu
       })
-      setFoods([..._foods])
+      setMenus(_menus)
 
       //购物车food减数量
-      const index = selectedFoods.indexOf(food)
-      const _selectedFoods = [...selectedFoods]
+      const index = selectedFoods.findIndex(selectedFood => selectedFood.id === food.id)
+      const _selectedFoods = selectedFoods
       if (index > -1) {
         if (selectedFoods[index].count === count) {
           _selectedFoods.splice(index, 1)
@@ -339,7 +674,7 @@ const Order = () => {
         </div>
         {/* 中间滚动的menu */}
         <div className="order_top-menu">
-          <Menu onAdd={addFood} onReduce={reduceFood} onSelect={showSelectSpecifications} />
+          <Menu menus={menus} onAdd={addFood} onReduce={reduceFood} onSelect={showSelectSpecifications} />
         </div>
         {/* 购物车 如果购物车是空的不会弹起 */}
         <Cart title="购物车" visiable={cartVisiable} onCancel={cancelCart}>
