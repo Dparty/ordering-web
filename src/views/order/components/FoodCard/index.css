@@ -59,8 +59,10 @@
 
 .food-card__action-normal {
   display: flex;
+  align-items: center;
 }
-.food-card__action-normal .action-btn > img {
+
+.food-card__action-normal .action-btn {
   width: 18px;
   height: 18px;
 }
