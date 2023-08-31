@@ -12,17 +12,17 @@ export enum FoodCardActionType {
 
 interface IProps {
   food: FoodProps
-  type?: string
+  actionType?: string
   onAdd: (type: FoodType, food: FoodProps, count: number, specifications?: Record<string, string>, remark?: string) => void
-  onReduce: (type: FoodType, food: FoodProps, count: number, specifications?: Record<string, string>, remark?: string) => void
+  onReduce: (type: FoodType, food: FoodProps, count: number, actionType?: string) => void
   onSelect: (food: FoodProps) => void
 }
 
-const FoodCard: React.FC<IProps> = ({ food, type, onAdd, onReduce, onSelect }) => {
+const FoodCard: React.FC<IProps> = ({ food, actionType, onAdd, onReduce, onSelect }) => {
   const foodType = food.specifications ? FoodType.SPECIFICATIONS : FoodType.NORMAL
 
   const add = () => {
-    if (foodType === FoodType.NORMAL || type === 'cart') {
+    if (foodType === FoodType.NORMAL || actionType === 'cart') {
       onAdd(foodType, food, 1, food.specifications ? food.specifications : {}, food.remark ? food.remark : '')
     } else {
       onSelect(food)
@@ -33,12 +33,7 @@ const FoodCard: React.FC<IProps> = ({ food, type, onAdd, onReduce, onSelect }) =
     if ((food.specifications && food.count > 0) || !food.specifications) {
       return (
         <div className="food-card__action-normal">
-          <img
-            className="action-btn"
-            onClick={() => onReduce(foodType, food, 1, food.specifications ? food.specifications : {}, food.remark ? food.remark : '')}
-            src={reducePngUrl}
-            alt="减"
-          />
+          <img className="action-btn" onClick={() => onReduce(foodType, food, 1, actionType)} src={reducePngUrl} alt="减" />
           <div className="action-normal-number">{food.count}</div>
           <img className="action-btn" onClick={add} src={addPngUrl} alt="加" />
         </div>
