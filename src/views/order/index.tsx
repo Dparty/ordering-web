@@ -584,12 +584,13 @@ const Order = () => {
   }
 
   const reduceFood = useCallback(
-    (type: FoodType, food: FoodProps, count: number, changeSpecifications?: Record<string, string>, remark?: string) => {
-      if (type === FoodType.SPECIFICATIONS) {
+    (foodType: FoodType, food: FoodProps, count: number, actionType?: string) => {
+      if (foodType === FoodType.SPECIFICATIONS && actionType !== 'cart') {
         handleShowMessage()
         showCart()
         return
       }
+
       const _menus = menus.map(menu => {
         menu.items = menu.items.map(_food => {
           if (_food.id === food.id) {
@@ -681,7 +682,7 @@ const Order = () => {
           {/* 购物车里面的每个菜品 */}
           {selectedFoods.map((selectedFood, index) => (
             <FoodCard
-              type="cart"
+              actionType="cart"
               key={index}
               food={selectedFood}
               onAdd={addFood}

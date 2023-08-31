@@ -7,7 +7,7 @@ import FoodCard from '../FoodCard/index'
 interface IProps {
   menus: MenuProps[]
   onAdd: (type: FoodType, food: FoodProps, count: number) => void
-  onReduce: (type: FoodType, food: FoodProps, count: number) => void
+  onReduce: (type: FoodType, food: FoodProps, count: number, actionType?: string) => void
   onSelect: (food: FoodProps) => void
 }
 
