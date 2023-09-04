@@ -21,6 +21,10 @@ const SubmitButton: React.FC<IProps> = ({
   showCartImg,
   count,
 }) => {
+  const submit = () => {
+    if (disable) return;
+    onSubmit();
+  };
   return (
     <div className="submit-button">
       <div className="submit-button__left" onClick={onShow}>
@@ -38,7 +42,7 @@ const SubmitButton: React.FC<IProps> = ({
       </div>
       <div
         className={`submit-button__text${disable ? " disable" : " usable"}`}
-        onClick={onSubmit}>
+        onClick={submit}>
         {btnText}
       </div>
     </div>

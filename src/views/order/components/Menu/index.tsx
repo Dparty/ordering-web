@@ -1,5 +1,5 @@
 import "./index.css";
-import { FoodProps, FoodType, Order } from "../../index";
+import { FoodProps, Order } from "../../index";
 import { useMemo, useState } from "react";
 import React from "react";
 import FoodCard from "../FoodCard";
@@ -24,15 +24,6 @@ const Menu: React.FC<IProps> = ({
   // const [activeMenuId, setActiveMenuId] = useState<string>(menus[0].id);
   const [isScrollingTo, setScrollingTo] = useState<string | null>(null);
 
-  // const menuRefs: { [key: string]: React.RefObject<HTMLDivElement> } =
-  //   menus.reduce(
-  //     (refs: { [key: string]: React.RefObject<HTMLDivElement> }, menu) => {
-  //       refs[menu.id] = React.createRef<HTMLDivElement>();
-  //       return refs;
-  //     },
-  //     {}
-  //   );
-  //点击左侧菜单时
   const clickLeftMenu = (id: string) => {
     setScrollingTo(id);
     // menuRefs[id].current!.scrollIntoView({ behavior: "smooth" });
@@ -45,16 +36,6 @@ const Menu: React.FC<IProps> = ({
     return items.filter(
       (item) => item.tags.filter((t) => t === tag).length !== 0
     );
-  };
-  //右侧菜单滚动
-  const handleScroll = (event: React.UIEvent<HTMLDivElement>): void => {
-    // if (isScrollingTo) return;
-    // if (!event.nativeEvent.isTrusted) return;
-    // const activeMenu = menus.find((menu: MenuProps) => {
-    //   const rect = menuRefs[menu.id].current!.getBoundingClientRect();
-    //   return rect.top < 280 && rect.bottom > 280;
-    // });
-    // setActiveMenuId(activeMenu ? activeMenu.id : activeMenuId);
   };
   const tags = useMemo(() => {
     const tags = new Set<string>();
@@ -76,7 +57,7 @@ const Menu: React.FC<IProps> = ({
           </div>
         ))}
       </div>
-      <div className="right-menu" onScroll={handleScroll}>
+      <div className="right-menu">
         {tags.map((tag, index) => (
           <div key={index}>
             <div className="right-menu-type text-ellipsis">{tag}</div>
@@ -88,9 +69,6 @@ const Menu: React.FC<IProps> = ({
                 onSelect={onSelect}
                 key={index}
                 item={item}
-                // onAdd={onAdd}
-                // onReduce={onReduce}
-                // onSelect={onSelect}
               />
             ))}
           </div>
