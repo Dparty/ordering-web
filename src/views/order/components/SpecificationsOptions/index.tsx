@@ -1,46 +1,43 @@
-import React, { useState } from 'react'
-import './index.css'
-import Tag from '../../../../components/Tag'
-
-export interface SpecificationsOptionsProps {
-  value: string
-  label: string
-  options: string[]
-}
+import React, { useEffect, useState } from "react";
+import "./index.css";
+import Tag from "../../../../components/Tag";
+import { Attribute, Option } from "warmsilver-core-ts-sdk";
 
 interface IProps {
-  options: SpecificationsOptionsProps[]
-  selectedOptions: string[]
-  onChange: (value: Record<string, string>) => void
+  attributes: Attribute[];
+  selectedOptions: Map<string, string>;
+  onSelectOption: (attribute: Attribute, option: Option) => void;
 }
 
-const SpecificationsOptions: React.FC<IProps> = ({ options, selectedOptions, onChange }) => {
-  const [selected, setSelected] = useState({})
-
-  const optionSelected = (optionTitle: string, value: string | number) => {
-    setSelected({ ...selected, [optionTitle]: value })
-    onChange({ ...selected, [optionTitle]: value })
-  }
+const SpecificationsOptions: React.FC<IProps> = ({
+  attributes,
+  selectedOptions,
+  onSelectOption,
+}) => {
+  const checkSelected = (label: string, option: Option) => {
+    return selectedOptions.get(label) === option.label;
+  };
   return (
     <div className="specifications-options">
-      {options.map(option => (
-        <div className="specifications-options__item" key={option.value}>
-          <div className="specifications-options__title">{option.label}</div>
+      {attributes.map((attribute) => (
+        <div className="specifications-options__item" key={attribute.label}>
+          <div className="specifications-options__title">{attribute.label}</div>
           <div className="specifications-options__container">
-            {option.options.map((i, index) => (
+            {attribute.options.map((option, index) => (
               <Tag
-                key={i + index}
-                label={i}
-                value={i}
-                onClick={value => optionSelected(option.value, value)}
-                isSelected={selectedOptions.indexOf(i) > -1}
+                extra={option.extra}
+                key={index}
+                label={option.label}
+                value={option.extra}
+                onClick={() => onSelectOption(attribute, option)}
+                selected={checkSelected(attribute.label, option)}
               />
             ))}
           </div>
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default SpecificationsOptions
+export default SpecificationsOptions;
