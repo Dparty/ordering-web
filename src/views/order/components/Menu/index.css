@@ -12,6 +12,7 @@
 .left-menu {
   width: 30%;
   overflow: auto;
+  background-color: rgba(248, 248, 248, 1);
 }
 
 .left-menu .left-menu-item {
@@ -34,7 +35,6 @@
 }
 
 .left-menu .normal {
-  background-color: rgba(248, 248, 248, 1);
   overflow-wrap: break-word;
   color: rgba(139, 139, 139, 1);
   font-size: 12px;

@@ -44,7 +44,7 @@
   height: 13px;
 }
 
-.card__content-body {
+.cart__content-body {
   flex: 1;
   overflow: scroll;
 }
