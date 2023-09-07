@@ -3,7 +3,7 @@ import exampleFoodPngUrl from "../../../../assets/png/example.png";
 import reducePngUrl from "../../../../assets/png/reduce.png";
 import addPngUrl from "../../../../assets/png/add.png";
 import "./index.css";
-import { Item } from "warmsilver-core-ts-sdk";
+import { Item } from "@dparty/core-ts-sdk";
 import { Pair } from "../..";
 import { PairToMap, getPricing } from "../../../../utils";
 

@@ -8,7 +8,7 @@ import SelectSpecifications from "./components/SelectSpecifications";
 import { useNavigate, useParams } from "react-router-dom";
 import Message from "../../components/Message";
 import { basePath, restaurantApi } from "../../api/api";
-import { Item } from "warmsilver-core-ts-sdk";
+import { Item } from "@dparty/core-ts-sdk";
 import {
   MapEqual,
   MapToPair,

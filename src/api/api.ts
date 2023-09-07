@@ -3,7 +3,7 @@ import {
   Configuration,
   ConfigurationParameters,
   RestaurantApi,
-} from "warmsilver-core-ts-sdk";
+} from "@dparty/core-ts-sdk";
 
 export const token = localStorage.getItem("token");
 

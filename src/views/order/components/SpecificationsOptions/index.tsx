@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
 import Tag from "../../../../components/Tag";
-import { Attribute, Option } from "warmsilver-core-ts-sdk";
+import { Attribute, Option } from "@dparty/core-ts-sdk";
 
 interface IProps {
   attributes: Attribute[];
