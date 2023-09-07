@@ -34,10 +34,12 @@ const FoodCard: React.FC<IProps> = ({
   const actionTypeNode = () => {
     if (item.attributes.length !== 0 && actionType !== "cart") {
       return (
-        <div
-          className="food-card__action-specifications"
-          onClick={() => onSelect(item)}>
-          <button className="action-specifications">選規格</button>
+        <div className="food-card__action-specifications">
+          <button
+            onClick={() => onSelect(item)}
+            className="food-card__action-specifications action-specifications">
+            選規格
+          </button>
         </div>
       );
     }

@@ -7,7 +7,6 @@ import {
 
 export const token = localStorage.getItem("token");
 
-// export let basePath = "https://core-uat.k8s19932be1.boardware.com";
 export let basePath = "https://ordering-api-uat.sum-foods.com";
 
 const accountApi = new AccountApi(
