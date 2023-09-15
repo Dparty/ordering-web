@@ -12,12 +12,12 @@
 }
 
 .cart__content {
+  transition: height 0.2s;
   padding: 0 15px;
   background-color: #fff;
   position: absolute;
-  height: 70%;
   width: calc(100% - 30px);
-  bottom: 0;
+  bottom: 0px;
   border-radius: 16px 16px 0px 0px;
   overflow: hidden;
   display: flex;

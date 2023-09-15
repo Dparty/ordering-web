@@ -56,7 +56,7 @@ const SelectSpecifications: React.FC<IProps> = ({
   if (!item) return null;
   return (
     <div className="select-specifications">
-      <div className="select-specifications__mask"></div>
+      <div className="select-specifications__mask" onClick={onCancel}></div>
       <div className="select-specifications__content">
         <div className="select-specifications__content-header">
           <div className="select-specifications__content-header-title">
@@ -65,7 +65,7 @@ const SelectSpecifications: React.FC<IProps> = ({
           <div
             className="select-specifications__content-header-cancel"
             onClick={onCancel}>
-            <img className="cancel-img" src={cancelPngUrl} alt="关闭" />
+            <img className="cancel-img" src={cancelPngUrl} alt="關閉" />
           </div>
         </div>
         <div className="select-specifications__content-body">
@@ -75,28 +75,6 @@ const SelectSpecifications: React.FC<IProps> = ({
               attributes={attributes}
               selectedOptions={selectedOptions}
             />
-            {/* tags */}
-            {/* <SpecificationsOptions
-              options={specificationTags}
-              selectedOptions={
-                currentFood?.specifications
-                  ? Object.values(currentFood?.specifications)
-                  : []
-              }
-              onChange={specificationsChange}
-            /> */}
-            {/* 备注 */}
-            {/* <div className="specifications-container-remark">
-              <div className="remark-title">备注</div>
-              <div className="remark-input">
-                <textarea
-                  placeholder="请输入您的口味喜好～"
-                  value={currentFood?.remark}
-                  onChange={remarkChange}
-                />
-              </div>
-            </div> */}
-            {/* 总价 */}
             <div className="specifications-container-bottom">
               <div className="specifications-price">
                 價錢: <span>${total / 100}</span>
