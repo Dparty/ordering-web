@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      {notShowHeaderUrls.indexOf(currentPath) == -1 && <PageHeader />}
+      {/* {notShowHeaderUrls.indexOf(currentPath) == -1 && <PageHeader />} */}
       <Outlet></Outlet>
     </div>
   );

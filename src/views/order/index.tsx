@@ -5,10 +5,10 @@ import Cart from "./components/Cart";
 import { useEffect, useMemo, useState } from "react";
 import Menu from "./components/Menu";
 import SelectSpecifications from "./components/SelectSpecifications";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import Message from "../../components/Message";
 import { basePath, restaurantApi } from "../../api/api";
-import { Item } from "@dparty/core-ts-sdk";
+import { Item, Restaurant, Table } from "@dparty/core-ts-sdk";
 import {
   MapEqual,
   MapToPair,
@@ -17,6 +17,7 @@ import {
   getPricing,
 } from "../../utils";
 import FoodCard from "./components/FoodCard";
+import PageHeader from "../../components/PageHeder";
 
 export interface Pair {
   left: string;
@@ -50,19 +51,14 @@ export interface CartOrder {
 
 const OrderPage = () => {
   const navigate = useNavigate();
-  const { restaurantId, tableId } = useParams();
-  const [items, setItems] = useState<Item[]>([]);
+  const { table, items } = useLoaderData() as {
+    table: Table;
+    items: Item[];
+  };
   const [cartVisiable, setCartVisiable] = useState<boolean>(false);
   const [orders, setOrders] = useState<Order[]>([]);
   const [selectingSpecificationsItem, setSelectingSpecificationsItem] =
     useState<Item>();
-  useEffect(() => {
-    restaurantApi
-      .listRestaurantItems({ id: restaurantId! })
-      .then((itemList) => {
-        setItems(itemList.data);
-      });
-  }, [restaurantId]);
 
   const [showMessage, setShowMessage] = useState(false);
   const cartCount = useMemo(() => {
@@ -101,7 +97,7 @@ const OrderPage = () => {
         options: order.options,
       })),
     };
-    fetch(`${basePath}/tables/${tableId}/orders`, {
+    fetch(`${basePath}/tables/${table.id}/orders`, {
       method: "POST",
       body: JSON.stringify(payload),
     }).then((e) => {
@@ -113,6 +109,7 @@ const OrderPage = () => {
   }, [orders]);
   return (
     <div className="order page-container">
+      <PageHeader name={"和食"} table=""></PageHeader>
       <div className="order_top">
         {/* 最上面的的图片 */}
         <div className="order_top-img">
