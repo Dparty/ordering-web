@@ -12,12 +12,18 @@ interface IProps {
 const Cart: React.FC<IProps> = ({ title, visiable, onCancel, children }) => {
   return (
     <div className="cart" style={{ zIndex: visiable ? 99999 : -9999 }}>
-      <div hidden={!visiable} className="cart__mask" onClick={onCancel}></div>
+      <div
+        className="cart__mask"
+        style={{
+          transition: visiable ? "opacity .2s" : "opacity 0s",
+          opacity: visiable ? 0.4 : 0,
+        }}
+        onClick={onCancel}></div>
       <div
         className="cart__content"
         style={{
-          height: visiable ? "70%" : "0",
-          transition: visiable ? "height 0.2s" : "height 0s",
+          height: visiable ? "70%" : "0%",
+          transition: visiable ? "height .2s" : "height 0s",
         }}>
         <div className="cart__content-header">
           <div className="cart__content-header-title">{title}</div>
