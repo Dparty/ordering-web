@@ -1,6 +1,6 @@
 import "./index.css";
 import cartPngUrl from "../../assets/png/cart.png";
-import React from "react";
+import React, { useState } from "react";
 
 interface IProps {
   onShow?: () => void;

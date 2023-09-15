@@ -90,6 +90,10 @@ const OrderPage = () => {
   };
   const [disable, setDisable] = useState(false);
   const submit = () => {
+    if (!cartVisiable) {
+      setCartVisiable(true);
+      return;
+    }
     setDisable(true);
     const payload = {
       orders: orders.map((order) => ({
@@ -157,7 +161,7 @@ const OrderPage = () => {
           count={cartCount}
           onShow={() => setCartVisiable(true)}
           onSubmit={submit}
-          btnText="選好了"
+          btnText={cartVisiable ? "確定" : "選好了"}
           price={total}
           showCartImg></SubmitButton>
       </div>
