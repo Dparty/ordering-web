@@ -39,7 +39,7 @@ const FoodCard: React.FC<IProps> = ({
             style={{}}
             onClick={() => onSelect(item)}
             className="food-card__action-specifications action-specifications">
-            選規格
+            規格
           </button>
         </div>
       );
