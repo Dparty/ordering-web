@@ -36,6 +36,7 @@ const FoodCard: React.FC<IProps> = ({
       return (
         <div className="food-card__action-specifications">
           <button
+            style={{}}
             onClick={() => onSelect(item)}
             className="food-card__action-specifications action-specifications">
             選規格
