@@ -1,9 +1,11 @@
 .order {
+  height: 100%;
   position: relative;
 }
 
 .order_top {
-  height: calc(100% - var(--order-botton-btn-height) - 30px);
+  /* height: 100%; */
+  height: calc(100% - var(--order-botton-btn-height) - 80px);
   position: relative;
   display: flex;
   flex-direction: column;
