@@ -2,13 +2,13 @@ import "./index.css";
 import foodIntroductionUrl from "../../assets/png/food-introduction.png";
 import SubmitButton from "../../components/SubmitButton";
 import Cart from "./components/Cart";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Menu from "./components/Menu";
 import SelectSpecifications from "./components/SelectSpecifications";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Message from "../../components/Message";
 import { basePath, restaurantApi } from "../../api/api";
-import { Item, Restaurant, Table } from "@dparty/core-ts-sdk";
+import { Item, Table } from "@dparty/core-ts-sdk";
 import {
   MapEqual,
   MapToPair,
@@ -91,18 +91,27 @@ const OrderPage = () => {
       return;
     }
     setDisable(true);
-    const payload = {
-      orders: orders.map((order) => ({
-        itemId: order.item.id,
-        options: order.options,
-      })),
-    };
-    fetch(`${basePath}/tables/${table.id}/orders`, {
-      method: "POST",
-      body: JSON.stringify(payload),
-    }).then((e) => {
-      navigate("/complete");
-    });
+    const sp = orders.map((order) => ({
+      itemId: order.item.id,
+      options: order.options,
+    }));
+    restaurantApi
+      .createBill({
+        id: table.id,
+        createBillRequest: {
+          orders: sp,
+        },
+      })
+      .then((e) => {
+        navigate("/complete");
+      });
+    // .catch((e) => {
+    //   console.log(e);
+    // });
+    // fetch(`${basePath}/tables/${table.id}/orders`, {
+    //   method: "POST",
+    //   body: JSON.stringify(payload),
+    // });
   };
   const cartOrders = useMemo(() => {
     return getCart(orders, []);
