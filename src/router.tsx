@@ -52,23 +52,28 @@ const router = createBrowserRouter([
           return new Promise((resolve, reject) => {
             const tableId = params.tableId as string;
             const restaurantId = params.restaurantId as string;
-            restaurantApi
-              .listRestaurantItems({ id: restaurantId! })
-              .then((itemList) => {
-                const items = itemList.data;
-                restaurantApi
-                  .listRestaurantTable({
-                    id: restaurantId,
-                  })
-                  .then((list) => {
-                    const table = list.data!.find(
-                      (table) => table.id === tableId
-                    );
-                    if (table) {
-                      resolve({ table: table, items: items });
-                    }
-                  });
-              });
+            Promise.all([
+              restaurantApi.getRestaurant({ id: restaurantId }),
+              restaurantApi.listRestaurantItems({ id: restaurantId! }),
+            ]).then(([restaurant, itemList]) => {
+              const items = itemList.data;
+              restaurantApi
+                .listRestaurantTable({
+                  id: restaurantId,
+                })
+                .then((list) => {
+                  const table = list.data!.find(
+                    (table) => table.id === tableId
+                  );
+                  if (table) {
+                    resolve({
+                      table: table,
+                      items: items,
+                      restaurant: restaurant,
+                    });
+                  }
+                });
+            });
           });
         },
       },

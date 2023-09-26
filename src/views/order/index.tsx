@@ -7,8 +7,8 @@ import Menu from "./components/Menu";
 import SelectSpecifications from "./components/SelectSpecifications";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Message from "../../components/Message";
-import { basePath, restaurantApi } from "../../api/api";
-import { Item, Table } from "@dparty/core-ts-sdk";
+import { restaurantApi } from "../../api/api";
+import { Item, Restaurant, Table } from "@dparty/core-ts-sdk";
 import {
   MapEqual,
   MapToPair,
@@ -38,12 +38,6 @@ export interface FoodProps {
   remark?: string;
 }
 
-export interface MenuProps {
-  id: string;
-  type: string;
-  items: FoodProps[];
-}
-
 export interface CartOrder {
   order: Order;
   amount: number;
@@ -51,9 +45,10 @@ export interface CartOrder {
 
 const OrderPage = () => {
   const navigate = useNavigate();
-  const { table, items } = useLoaderData() as {
+  const { table, items, restaurant } = useLoaderData() as {
     table: Table;
     items: Item[];
+    restaurant: Restaurant;
   };
   const [cartVisiable, setCartVisiable] = useState<boolean>(false);
   const [orders, setOrders] = useState<Order[]>([]);
@@ -105,20 +100,13 @@ const OrderPage = () => {
       .then((e) => {
         navigate("/complete");
       });
-    // .catch((e) => {
-    //   console.log(e);
-    // });
-    // fetch(`${basePath}/tables/${table.id}/orders`, {
-    //   method: "POST",
-    //   body: JSON.stringify(payload),
-    // });
   };
   const cartOrders = useMemo(() => {
     return getCart(orders, []);
   }, [orders]);
   return (
     <div className="order page-container">
-      <PageHeader name={"和食"} table=""></PageHeader>
+      <PageHeader name={restaurant.name} table=""></PageHeader>
       <div className="order_top">
         {/* 最上面的的图片 */}
         <div className="order_top-img">
