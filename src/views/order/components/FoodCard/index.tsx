@@ -71,7 +71,11 @@ const FoodCard: React.FC<IProps> = ({
   return (
     <div className="food-card">
       <div className="food-card__img">
-        <img className="food-img" src={exampleFoodPngUrl} alt="品項圖片" />
+        {item.images.length !== 0 ? (
+          <img className="food-img" src={item.images[0]} alt="品項圖片" />
+        ) : (
+          <img className="food-img" src={exampleFoodPngUrl} alt="品項圖片" />
+        )}
       </div>
       <div className="food-card__info">
         <div className="info-header">
