@@ -8,6 +8,7 @@
   position: relative;
 }
 .food-card__img .food-img {
+  border-radius: 10px;
   width: 75px;
   height: 75px;
 }
