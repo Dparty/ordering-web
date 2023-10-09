@@ -57,7 +57,7 @@ const router = createBrowserRouter([
               query.get("restaurantId") || (params.restaurantId as string);
             Promise.all([
               restaurantApi.getRestaurant({ id: restaurantId }),
-              restaurantApi.listRestaurantItems({ id: restaurantId! }),
+              restaurantApi.listRestaurantItems({ id: restaurantId }),
             ]).then(([restaurant, itemList]) => {
               const items = itemList.data;
               restaurantApi
