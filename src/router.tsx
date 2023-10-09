@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, useLocation } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import App from "./App";
 import { restaurantApi } from "./api/api";
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "order/:restaurantId/:tableId",
+        path: "ordering",
         element: (
           <Suspense>
             <Order />
@@ -51,8 +51,11 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) => {
           return new Promise((resolve, reject) => {
-            const tableId = params.tableId as string;
-            const restaurantId = params.restaurantId as string;
+            const search = window.location.search;
+            const query = new URLSearchParams(search);
+            const tableId = query.get("tableId") || (params.tableId as string);
+            const restaurantId =
+              query.get("restaurantId") || (params.restaurantId as string);
             Promise.all([
               restaurantApi.getRestaurant({ id: restaurantId }),
               restaurantApi.listRestaurantItems({ id: restaurantId! }),
