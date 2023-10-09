@@ -59,23 +59,17 @@ const router = createBrowserRouter([
               restaurantApi.getRestaurant({ id: restaurantId }),
               restaurantApi.listRestaurantItems({ id: restaurantId }),
             ]).then(([restaurant, itemList]) => {
+              const table = restaurant.tables.find(
+                (table) => table.id === tableId
+              );
               const items = itemList.data;
-              restaurantApi
-                .listRestaurantTable({
-                  id: restaurantId,
-                })
-                .then((list) => {
-                  const table = list.data!.find(
-                    (table) => table.id === tableId
-                  );
-                  if (table) {
-                    resolve({
-                      table: table,
-                      items: items,
-                      restaurant: restaurant,
-                    });
-                  }
+              if (table) {
+                resolve({
+                  table: table,
+                  items: items,
+                  restaurant: restaurant,
                 });
+              }
             });
           });
         },
