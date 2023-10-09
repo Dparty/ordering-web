@@ -1,4 +1,4 @@
-import { createBrowserRouter, useLocation } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import App from "./App";
 import { restaurantApi } from "./api/api";
@@ -27,7 +27,6 @@ const Home = lazyWithRetry(() => import("./views/home"));
 const Order = lazyWithRetry(() => import("./views/order"));
 const Submit = lazyWithRetry(() => import("./views/submit"));
 const Complete = lazyWithRetry(() => import("./views/complete"));
-const PP = lazyWithRetry(() => import("./views/PrivacyPolicy"));
 
 const router = createBrowserRouter([
   {
@@ -96,10 +95,6 @@ const router = createBrowserRouter([
             <Complete />
           </Suspense>
         ),
-      },
-      {
-        path: "PP",
-        element: <PP></PP>,
       },
     ],
   },
