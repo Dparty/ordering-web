@@ -40,9 +40,7 @@ const SubmitButton: React.FC<IProps> = ({
           <span>${price / 100}</span>
         </div>
       </div>
-      <div
-        className={`submit-button__text${disable ? " disable" : " usable"}`}
-        onClick={submit}>
+      <div className={`submit-button__text${disable ? " disable" : " usable"}`} onClick={submit}>
         {btnText}
       </div>
     </div>

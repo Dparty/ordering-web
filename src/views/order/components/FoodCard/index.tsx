@@ -38,7 +38,8 @@ const FoodCard: React.FC<IProps> = ({
           <button
             style={{}}
             onClick={() => onSelect(item)}
-            className="food-card__action-specifications action-specifications">
+            className="food-card__action-specifications action-specifications"
+          >
             規格
           </button>
         </div>
@@ -80,9 +81,7 @@ const FoodCard: React.FC<IProps> = ({
       <div className="food-card__info">
         <div className="info-header">
           <div className="food-card__info-name text-ellipsis">{item.name}</div>
-          <div className="food-card__info-desc text-ellipsis">
-            {optionsString}
-          </div>
+          <div className="food-card__info-desc text-ellipsis">{optionsString}</div>
         </div>
         {item && (
           <div className="food-card__info-price">

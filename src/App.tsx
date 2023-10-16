@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import PageHeader from "./components/PageHeder";
+// import PageHeader from "./components/PageHeder";
 
 function App() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const currentPath = useLocation().pathname;
 
@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       {/* {notShowHeaderUrls.indexOf(currentPath) == -1 && <PageHeader />} */}
-      <Outlet></Outlet>
+      <Outlet />
     </div>
   );
 }

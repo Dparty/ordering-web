@@ -53,15 +53,12 @@ const router = createBrowserRouter([
             const search = window.location.search;
             const query = new URLSearchParams(search);
             const tableId = query.get("tableId") || (params.tableId as string);
-            const restaurantId =
-              query.get("restaurantId") || (params.restaurantId as string);
+            const restaurantId = query.get("restaurantId") || (params.restaurantId as string);
             Promise.all([
               restaurantApi.getRestaurant({ id: restaurantId }),
               restaurantApi.listRestaurantItems({ id: restaurantId }),
             ]).then(([restaurant, itemList]) => {
-              const table = restaurant.tables.find(
-                (table) => table.id === tableId
-              );
+              const table = restaurant.tables.find((table) => table.id === tableId);
               const items = itemList.data;
               if (table) {
                 resolve({

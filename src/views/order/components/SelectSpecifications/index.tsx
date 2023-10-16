@@ -11,11 +11,7 @@ interface IProps {
   pushCart: (item: Item, selectedOptions: Map<string, string>) => void;
 }
 
-const SelectSpecifications: React.FC<IProps> = ({
-  item,
-  onCancel,
-  pushCart,
-}) => {
+const SelectSpecifications: React.FC<IProps> = ({ item, onCancel, pushCart }) => {
   const attributes = useMemo(() => {
     if (!item) return [] as Attribute[];
     return item.attributes.map((att) => {
@@ -45,7 +41,7 @@ const SelectSpecifications: React.FC<IProps> = ({
     setSelectedOptions((map) => new Map(map.set(a.label, o.label)));
   };
   useEffect(() => {
-    let selected = new Map<string, string>();
+    const selected = new Map<string, string>();
     if (item) {
       item.attributes.forEach((attr) => {
         selected.set(attr.label, attr.options[0].label);
@@ -59,12 +55,8 @@ const SelectSpecifications: React.FC<IProps> = ({
       <div className="select-specifications__mask" onClick={onCancel}></div>
       <div className="select-specifications__content">
         <div className="select-specifications__content-header">
-          <div className="select-specifications__content-header-title">
-            {item?.name ?? ""}
-          </div>
-          <div
-            className="select-specifications__content-header-cancel"
-            onClick={onCancel}>
+          <div className="select-specifications__content-header-title">{item?.name ?? ""}</div>
+          <div className="select-specifications__content-header-cancel" onClick={onCancel}>
             <img className="cancel-img" src={cancelPngUrl} alt="關閉" />
           </div>
         </div>
@@ -80,10 +72,9 @@ const SelectSpecifications: React.FC<IProps> = ({
                 價錢: <span>${total / 100}</span>
               </div>
               <button
-                className={
-                  "specifications-submit-btn specifications-submit-btn-usable"
-                }
-                onClick={() => pushCart(item, selectedOptions)}>
+                className={"specifications-submit-btn specifications-submit-btn-usable"}
+                onClick={() => pushCart(item, selectedOptions)}
+              >
                 + 加入购物车
               </button>
             </div>
