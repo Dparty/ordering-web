@@ -9,13 +9,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import Message from "../../components/Message";
 import { restaurantApi } from "../../api/api";
 import { Item, Restaurant, Table } from "@dparty/core-ts-sdk";
-import {
-  MapEqual,
-  MapToPair,
-  PairToMap,
-  getCart,
-  getPricing,
-} from "../../utils";
+import { MapEqual, MapToPair, PairToMap, getCart, getPricing } from "../../utils";
 import FoodCard from "./components/FoodCard";
 import PageHeader from "../../components/PageHeder";
 
@@ -52,8 +46,7 @@ const OrderPage = () => {
   };
   const [cartVisiable, setCartVisiable] = useState<boolean>(false);
   const [orders, setOrders] = useState<Order[]>([]);
-  const [selectingSpecificationsItem, setSelectingSpecificationsItem] =
-    useState<Item>();
+  const [selectingSpecificationsItem, setSelectingSpecificationsItem] = useState<Item>();
 
   const [showMessage, setShowMessage] = useState(false);
   const cartCount = useMemo(() => {
@@ -70,10 +63,7 @@ const OrderPage = () => {
   const removeCart = (item: Item, options: Map<string, string>) => {
     let index = -1;
     orders.forEach((order, i) => {
-      if (
-        order.item.id === item.id &&
-        MapEqual(PairToMap(order.options), options)
-      ) {
+      if (order.item.id === item.id && MapEqual(PairToMap(order.options), options)) {
         index = i;
       }
     });
@@ -106,7 +96,7 @@ const OrderPage = () => {
   }, [orders]);
   return (
     <div className="order page-container">
-      <PageHeader name={restaurant.name} table=""></PageHeader>
+      <PageHeader name={restaurant.name} table="" />
       <div className="order_top">
         {/* 最上面的的图片 */}
         <div className="order_top-img">
@@ -123,10 +113,7 @@ const OrderPage = () => {
           />
         </div>
         {/* 购物车 如果购物车是空的不会弹起 */}
-        <Cart
-          title="購物車"
-          visiable={cartVisiable}
-          onCancel={() => setCartVisiable(false)}>
+        <Cart title="購物車" visiable={cartVisiable} onCancel={() => setCartVisiable(false)}>
           {/* 购物车里面的每个菜品 */}
           {cartOrders.map((cartOrder, index) => {
             return (
@@ -134,16 +121,14 @@ const OrderPage = () => {
                 options={cartOrder.order.options}
                 amount={cartOrder.amount}
                 removeCart={() =>
-                  removeCart(
-                    cartOrder.order.item,
-                    PairToMap(cartOrder.order.options)
-                  )
+                  removeCart(cartOrder.order.item, PairToMap(cartOrder.order.options))
                 }
                 pushCart={pushCart}
                 onSelect={(item) => {}}
                 item={cartOrder.order.item}
                 actionType="cart"
-                key={index}></FoodCard>
+                key={index}
+              />
             );
           })}
         </Cart>
@@ -157,21 +142,16 @@ const OrderPage = () => {
           onSubmit={submit}
           btnText={cartVisiable ? "確定" : "選好了"}
           price={total}
-          showCartImg></SubmitButton>
+          showCartImg
+        />
       </div>
       {/* 选规格modal */}
       <SelectSpecifications
         pushCart={pushCart}
         item={selectingSpecificationsItem}
-        onCancel={() =>
-          setSelectingSpecificationsItem(undefined)
-        }></SelectSpecifications>
-      {showMessage && (
-        <Message
-          message="請在購物車中操作"
-          onClose={() => setShowMessage(false)}
-        />
-      )}
+        onCancel={() => setSelectingSpecificationsItem(undefined)}
+      />
+      {showMessage && <Message message="請在購物車中操作" onClose={() => setShowMessage(false)} />}
     </div>
   );
 };

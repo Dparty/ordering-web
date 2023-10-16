@@ -14,17 +14,9 @@ interface IProps {
   onSelect: (item: Item) => void;
 }
 
-const Menu: React.FC<IProps> = ({
-  removeCart,
-  onSelect,
-  items,
-  orders,
-  pushCart,
-}) => {
+const Menu: React.FC<IProps> = ({ removeCart, onSelect, items, orders, pushCart }) => {
   const getItemsByTag = (tag: string) => {
-    return items.filter(
-      (item) => item.tags.filter((t) => t === tag).length !== 0
-    );
+    return items.filter((item) => item.tags.filter((t) => t === tag).length !== 0);
   };
   const tags = useMemo(() => {
     const tags = new Set<string>();
@@ -39,14 +31,13 @@ const Menu: React.FC<IProps> = ({
   const [activeTag, setActiveTag] = useState<string>(tags[0]);
   const [isScrollingTo, setScrollingTo] = useState<string | null>(null);
 
-  const tagRefs: { [key: string]: React.RefObject<HTMLDivElement> } =
-    tags.reduce(
-      (refs: { [key: string]: React.RefObject<HTMLDivElement> }, tag) => {
-        refs[tag] = React.createRef<HTMLDivElement>();
-        return refs;
-      },
-      {}
-    );
+  const tagRefs: { [key: string]: React.RefObject<HTMLDivElement> } = tags.reduce(
+    (refs: { [key: string]: React.RefObject<HTMLDivElement> }, tag) => {
+      refs[tag] = React.createRef<HTMLDivElement>();
+      return refs;
+    },
+    {}
+  );
   //点击左侧菜单时
   const clickLeftTag = (clickTag: string) => {
     setScrollingTo(clickTag);
@@ -82,12 +73,11 @@ const Menu: React.FC<IProps> = ({
         {tags.map((tag, i) => (
           <div
             key={i}
-            className={`left-menu-item ${
-              tag === activeTag ? "active" : "normal"
-            }`}
+            className={`left-menu-item ${tag === activeTag ? "active" : "normal"}`}
             onClick={() => {
               clickLeftTag(tag);
-            }}>
+            }}
+          >
             <span>{tag}</span>
           </div>
         ))}

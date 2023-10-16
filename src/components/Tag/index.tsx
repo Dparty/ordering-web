@@ -18,7 +18,8 @@ const Tag: React.FC<IProps> = ({ label, value, selected, onClick, extra }) => {
   return (
     <div
       className={`tag${selected ? " tag__selected" : " tag__normal"}`}
-      onClick={() => onClick(value)}>
+      onClick={() => onClick(value)}
+    >
       {label}
       {extra ? "+" + extra / 100 + "$" : ""}
     </div>

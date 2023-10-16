@@ -15,9 +15,7 @@ const Submit = () => {
   const selectedFoods: FoodProps[] = sessionStorageSelectedFoods
     ? JSON.parse(sessionStorageSelectedFoods)
     : [];
-  const cartCount = sessionStorageCartCount
-    ? JSON.parse(sessionStorageCartCount)
-    : 0;
+  const cartCount = sessionStorageCartCount ? JSON.parse(sessionStorageCartCount) : 0;
 
   const onSubmit = () => {
     navigate("/complete");
@@ -38,9 +36,7 @@ const Submit = () => {
                   <div className="food-info">
                     <p className="food-info-name text-ellipsis">{food.name}</p>
                     <p className="food-info-specifications text-ellipsis">
-                      {food.specifications
-                        ? Object.values(food.specifications).join(",")
-                        : ""}
+                      {food.specifications ? Object.values(food.specifications).join(",") : ""}
                     </p>
                     <p className="food-info-count">x{food.count}</p>
                   </div>
@@ -57,11 +53,7 @@ const Submit = () => {
         </div>
       </div>
       <div className="submit__btn-container">
-        <SubmitButton
-          count={cartCount}
-          onSubmit={onSubmit}
-          btnText="提交订单"
-          price={price}></SubmitButton>
+        <SubmitButton count={cartCount} onSubmit={onSubmit} btnText="提交订单" price={price} />
       </div>
     </div>
   );
