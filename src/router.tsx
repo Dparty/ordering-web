@@ -27,6 +27,7 @@ const Home = lazyWithRetry(() => import("./views/home"));
 const Order = lazyWithRetry(() => import("./views/order"));
 const Submit = lazyWithRetry(() => import("./views/submit"));
 const Complete = lazyWithRetry(() => import("./views/complete"));
+const Tables = lazyWithRetry(() => import("./views/tables"));
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense>
             <Home />
+          </Suspense>
+        ),
+      },
+      {
+        path: "tables",
+        element: (
+          <Suspense>
+            <Tables />
           </Suspense>
         ),
       },
@@ -54,10 +63,15 @@ const router = createBrowserRouter([
             const query = new URLSearchParams(search);
             const tableId = query.get("tableId") || (params.tableId as string);
             const restaurantId = query.get("restaurantId") || (params.restaurantId as string);
+            // 如果獲取不到id，直接跳轉，防止後面 Promise 報錯
+            if (!tableId && !restaurantId) {
+              window.location.href = "/tables";
+            }
             Promise.all([
               restaurantApi.getRestaurant({ id: restaurantId }),
               restaurantApi.listRestaurantItems({ id: restaurantId }),
             ]).then(([restaurant, itemList]) => {
+              console.log(restaurant, itemList);
               const table = restaurant.tables.find((table) => table.id === tableId);
               const items = itemList.data;
               if (table) {
@@ -66,6 +80,8 @@ const router = createBrowserRouter([
                   items: items,
                   restaurant: restaurant,
                 });
+              } else {
+                window.location.href = `/tables?restaurantId=${restaurantId}`;
               }
             });
           });
