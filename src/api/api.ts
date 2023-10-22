@@ -4,10 +4,10 @@ export const token = localStorage.getItem("token");
 
 
 
-export let basePath = "https://ordering-api.sum-foods.com";
-if (window.location.hostname === "ordering-uat.sum-foods.com") {
-  basePath = "https://ordering-api-uat.sum-foods.com";
-}
+export const basePath = "https://ordering-api-uat.sum-foods.com";
+// if (window.location.hostname === "ordering-uat.sum-foods.com") {
+//   basePath = "https://ordering-api-uat.sum-foods.com";
+// }
 
 const accountApi = new AccountApi(
   new Configuration({

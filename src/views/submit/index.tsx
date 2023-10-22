@@ -1,6 +1,5 @@
 import SubmitButton from "../../components/SubmitButton";
 import "./index.css";
-import exampleFoodPngUrl from "../../assets/png/example.png";
 import { FoodProps } from "../order";
 import { useNavigate } from "react-router-dom";
 
@@ -31,7 +30,7 @@ const Submit = () => {
               return (
                 <div key={index} className="food-container">
                   <div className="food-img">
-                    <img src={exampleFoodPngUrl} alt="食物" />
+                    <img src="/default.png" alt="食物" />
                   </div>
                   <div className="food-info">
                     <p className="food-info-name text-ellipsis">{food.name}</p>

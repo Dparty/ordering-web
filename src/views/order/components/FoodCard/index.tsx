@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import exampleFoodPngUrl from "../../../../assets/png/example.png";
 import reducePngUrl from "../../../../assets/png/reduce.png";
 import addPngUrl from "../../../../assets/png/add.png";
 import "./index.css";
@@ -75,7 +74,7 @@ const FoodCard: React.FC<IProps> = ({
         {item.images.length !== 0 ? (
           <img className="food-img" src={item.images[0]} alt="品項圖片" />
         ) : (
-          <img className="food-img" src={exampleFoodPngUrl} alt="品項圖片" />
+          <img className="food-img" src="/default.png" alt="品項圖片" />
         )}
       </div>
       <div className="food-card__info">
