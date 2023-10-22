@@ -2,8 +2,13 @@ import { AccountApi, Configuration, ConfigurationParameters, RestaurantApi } fro
 
 export const token = localStorage.getItem("token");
 
-export const basePath = "https://ordering-api-uat.sum-foods.com";
-// export let basePath = "http://localhost:8080";
+
+
+export let basePath = "https://ordering.sum-foods.com";
+if (window.location.hostname === "ordering-uat.sum-foods.com") {
+  basePath = "https://ordering-uat.sum-foods.com";
+}
+
 const accountApi = new AccountApi(
   new Configuration({
     basePath: basePath,
