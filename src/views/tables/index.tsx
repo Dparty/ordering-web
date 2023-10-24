@@ -76,7 +76,7 @@ const SelectTableModal: React.FC<ISelectTableModalProps> = ({ restaurantId, tabl
             {selectedOption && (
               <QRCode
                 size={256}
-                style={{ height: "auto", maxWidth: "50%", width: "50%" }}
+                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
                 value={createQrcodeUrl(selectedOption.id)}
                 viewBox={`0 0 256 256`}
               />
