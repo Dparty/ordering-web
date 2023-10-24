@@ -77,7 +77,7 @@ const SelectTableModal: React.FC<ISelectTableModalProps> = ({ restaurantId, tabl
               <QRCode
                 size={256}
                 style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                value={createOrderingUrl(restaurantId, selectedOption.id)}
+                value={`${orderWebDomain}/ordering/?restaurantId=${restaurantId}&tableId=${selectedOption.id}`}
                 viewBox={`0 0 256 256`}
               />
             )}
