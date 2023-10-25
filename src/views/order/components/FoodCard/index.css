@@ -1,8 +1,9 @@
 .food-card {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
-  height: 75px;
+  /* height: 75px; */
   background: #ffffff;
   padding: 10px 0;
   position: relative;
@@ -22,7 +23,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  height: calc(100% - 15px);
+  height: 65px;
+  /* height: calc(100% - 15px); */
 }
 
 .food-card__info .info-header {
@@ -34,6 +36,7 @@
   text-align: left;
   font-size: 15px;
   font-weight: 500;
+  white-space: break-spaces;
 }
 
 .food-card__info-desc {
@@ -45,7 +48,6 @@
 
 .food-card__info-price {
   color: #ff4833;
-  margin-top: 7px;
   font-size: 8px;
 }
 
@@ -85,4 +87,10 @@
   line-height: 24px;
   border: unset;
   background-color: transparent;
+}
+
+.food-card__info-bottom{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }

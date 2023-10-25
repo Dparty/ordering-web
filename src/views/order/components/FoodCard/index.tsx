@@ -45,7 +45,12 @@ const FoodCard: React.FC<IProps> = ({
       );
     }
     return (
-      <div className="food-card__action-normal">
+      <div
+        className="food-card__action-normal"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
         <img
           className="action-btn"
           onClick={() => removeCart(item, PairToMap(options))}
@@ -69,7 +74,7 @@ const FoodCard: React.FC<IProps> = ({
     return options.map((option) => `${option.left}:${option.right}`).join(",");
   }, [options]);
   return (
-    <div className="food-card">
+    <div className="food-card" onClick={() => onSelect(item)}>
       <div className="food-card__img">
         {item.images.length !== 0 ? (
           <img className="food-img" src={item.images[0]} alt="品項圖片" />
@@ -82,13 +87,15 @@ const FoodCard: React.FC<IProps> = ({
           <div className="food-card__info-name text-ellipsis">{item.name}</div>
           <div className="food-card__info-desc text-ellipsis">{optionsString}</div>
         </div>
-        {item && (
-          <div className="food-card__info-price">
-            <span>${pricing / 100}</span>
-          </div>
-        )}
+        <div className="food-card__info-bottom">
+          {item && (
+            <div className="food-card__info-price">
+              <span>${pricing / 100}</span>
+            </div>
+          )}
+          {actionTypeNode()}
+        </div>
       </div>
-      {actionTypeNode()}
     </div>
   );
 };

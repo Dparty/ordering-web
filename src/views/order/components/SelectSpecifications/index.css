@@ -51,3 +51,10 @@
 .select-specifications__content-body::-webkit-scrollbar {
   display: none; /* Chrome Safari */
 }
+
+.select-specification__description{
+  font-size: 10px;
+  color: gray;
+  margin-bottom: 10px;
+  text-align: left;
+}
