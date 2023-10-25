@@ -13,4 +13,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
+            sudo docker stop ${{ vars.DOCKER_NAME }}
+            sudo docker rm ${{ vars.DOCKER_NAME }}
             sudo docker run -dp 9085:80 --name ${{ vars.DOCKER_NAME }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.DOCKER_NAME }}
