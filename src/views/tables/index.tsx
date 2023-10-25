@@ -11,20 +11,7 @@ interface ISelectTableModalProps {
   title?: string;
 }
 
-const qrcodeApi = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=";
 const orderWebDomain = "https://ordering-uat.sum-foods.com";
-
-function createQrcodeUrl(text: string): string {
-  return `${qrcodeApi}${text}`;
-}
-
-function createOrderingUrl(restaurantId: string, tableId: string): string {
-  return createQrcodeUrl(
-    encodeURIComponent(
-      `${orderWebDomain}/ordering/?restaurantId=${restaurantId}&tableId=${tableId}`
-    )
-  );
-}
 
 const SelectTableModal: React.FC<ISelectTableModalProps> = ({ restaurantId, tableList, title }) => {
   const [selectedOption, setSelectedOption] = useState<Table | null>(null);
@@ -32,8 +19,6 @@ const SelectTableModal: React.FC<ISelectTableModalProps> = ({ restaurantId, tabl
   const onSelectOption = (option: Table) => {
     setSelectedOption(option);
   };
-  // console.log(createOrderingUrl(restaurantId,selectedOption.id));
-  // setShowQrcode(true);
   return (
     <div className="select-tables">
       <div className="select-tables__mask"></div>
@@ -71,7 +56,7 @@ const SelectTableModal: React.FC<ISelectTableModalProps> = ({ restaurantId, tabl
         </div>
       </div>
       {showQrcode && (
-        <div onClick={() => setShowQrcode(false)} id="myModal" className="modal">
+        <div onClick={() => setShowQrcode(false)} className="modal">
           <div className="modal-content">
             {selectedOption && (
               <QRCode
