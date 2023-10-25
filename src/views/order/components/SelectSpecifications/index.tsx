@@ -60,6 +60,7 @@ const SelectSpecifications: React.FC<IProps> = ({ item, onCancel, pushCart }) =>
             <img className="cancel-img" src={cancelPngUrl} alt="關閉" />
           </div>
         </div>
+        <div className="select-specification__description"></div>
         <div className="select-specifications__content-body">
           <div className="specifications-container">
             <SpecificationsOptions
