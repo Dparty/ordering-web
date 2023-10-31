@@ -67,13 +67,9 @@ const router = createBrowserRouter([
             if (!tableId && !restaurantId) {
               window.location.href = "/tables";
             }
-            Promise.all([
-              restaurantApi.getRestaurant({ id: restaurantId }),
-              restaurantApi.listRestaurantItems({ id: restaurantId }),
-            ]).then(([restaurant, itemList]) => {
-              console.log(restaurant, itemList);
+            restaurantApi.getRestaurant({ id: restaurantId }).then((restaurant) => {
               const table = restaurant.tables.find((table) => table.id === tableId);
-              const items = itemList.data;
+              const items = restaurant.items;
               if (table) {
                 resolve({
                   table: table,

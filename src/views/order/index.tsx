@@ -84,10 +84,13 @@ const OrderPage = () => {
       .createBill({
         id: table.id,
         createBillRequest: {
-          orders: sp,
+          specifications: sp,
         },
       })
-      .then((e) => {
+      .then(() => {
+        navigate("/complete");
+      })
+      .catch(() => {
         navigate("/complete");
       });
   };
