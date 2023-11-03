@@ -8,7 +8,7 @@ import SelectSpecifications from "./components/SelectSpecifications";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Message from "../../components/Message";
 import { restaurantApi } from "../../api/api";
-import { Item, Restaurant, Table } from "@dparty/core-ts-sdk";
+import { Item, Restaurant, Table } from "@dparty/restaurant-ts-sdk";
 import { MapEqual, MapToPair, PairToMap, getCart, getPricing } from "../../utils";
 import FoodCard from "./components/FoodCard";
 import PageHeader from "../../components/PageHeder";
