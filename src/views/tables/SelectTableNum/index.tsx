@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 import TableTag from "./TableTag";
-import { Table } from "@dparty/core-ts-sdk";
+import { Table } from "@dparty/restaurant-ts-sdk";
 
 interface IProps {
   options: Table[] | null;

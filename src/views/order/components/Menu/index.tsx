@@ -3,7 +3,7 @@ import { Order } from "../../index";
 import { useEffect, useMemo, useState } from "react";
 import React from "react";
 import FoodCard from "../FoodCard";
-import { Item } from "@dparty/core-ts-sdk";
+import { Item } from "@dparty/restaurant-ts-sdk";
 import { getAmount } from "../../../../utils";
 
 interface IProps {

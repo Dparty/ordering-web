@@ -1,4 +1,4 @@
-import { Attribute } from "@dparty/core-ts-sdk";
+import { Attribute } from "@dparty/restaurant-ts-sdk";
 import { CartOrder, Order, Pair } from "../views/order";
 
 //检查object的每个属性是否为空。只要有一个属性为空就返回true

@@ -2,7 +2,7 @@ import "./index.css";
 import logoPngUrl from "../../assets/png/logo.png";
 import { useEffect, useState } from "react";
 import { restaurantApi } from "../../api/api";
-import { Table } from "@dparty/core-ts-sdk";
+import { Table } from "@dparty/restaurant-ts-sdk";
 import SelectTableNum from "./SelectTableNum";
 import QRCode from "react-qr-code";
 interface ISelectTableModalProps {

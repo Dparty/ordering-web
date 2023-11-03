@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import reducePngUrl from "../../../../assets/png/reduce.png";
 import addPngUrl from "../../../../assets/png/add.png";
 import "./index.css";
-import { Item } from "@dparty/core-ts-sdk";
+import { Item } from "@dparty/restaurant-ts-sdk";
 import { Pair } from "../..";
 import { PairToMap, getPricing } from "../../../../utils";
 

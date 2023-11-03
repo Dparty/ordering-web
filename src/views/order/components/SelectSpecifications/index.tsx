@@ -3,7 +3,7 @@ import cancelPngUrl from "../../../../assets/png/cancel.png";
 import { useEffect, useMemo, useState } from "react";
 import SpecificationsOptions from "../SpecificationsOptions";
 import { getAttributePricing } from "../../../../utils";
-import { Attribute, Item, Option } from "@dparty/core-ts-sdk";
+import { Attribute, Item, Option } from "@dparty/restaurant-ts-sdk";
 
 interface IProps {
   item?: Item;
