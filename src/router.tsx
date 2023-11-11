@@ -63,12 +63,16 @@ const router = createBrowserRouter([
             const query = new URLSearchParams(search);
             const tableId = query.get("tableId") || (params.tableId as string);
             const restaurantId = query.get("restaurantId") || (params.restaurantId as string);
+            const label = query.get("label");
             // 如果獲取不到id，直接跳轉，防止後面 Promise 報錯
             if (!tableId && !restaurantId) {
               window.location.href = "/tables";
             }
             restaurantApi.getRestaurant({ id: restaurantId }).then((restaurant) => {
-              const table = restaurant.tables.find((table) => table.id === tableId);
+              const table =
+                label === null
+                  ? restaurant.tables.find((table) => table.id === tableId)
+                  : restaurant.tables.find((table) => table.label === label);
               const items = restaurant.items;
               if (table) {
                 resolve({
