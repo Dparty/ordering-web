@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import App from "./App";
 import { restaurantApi } from "./api/api";
+import { ItemStatus } from "@dparty/restaurant-ts-sdk";
 
 export function lazyWithRetry(componentImport: any) {
   return lazy(async () => {
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
               if (table) {
                 resolve({
                   table: table,
-                  items: items,
+                  items: items.filter((i) => i.status === ItemStatus.Actived),
                   restaurant: restaurant,
                 });
               } else {
