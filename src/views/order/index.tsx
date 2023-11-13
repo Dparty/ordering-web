@@ -99,7 +99,7 @@ const OrderPage = () => {
   }, [orders]);
   return (
     <div className="order page-container">
-      <PageHeader name={restaurant.name} table="" />
+      <PageHeader name={restaurant.name} table={table.label} />
       <div className="order_top">
         {/* 最上面的的图片 */}
         <div className="order_top-img">
