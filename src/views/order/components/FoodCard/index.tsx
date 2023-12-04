@@ -77,7 +77,11 @@ const FoodCard: React.FC<IProps> = ({
     <div className="food-card" onClick={() => onSelect(item)}>
       <div className="food-card__img">
         {item.images.length !== 0 ? (
-          <img className="food-img" src={item.images[0]} alt="品項圖片" />
+          <img
+            className="food-img"
+            src={`${item.images[0]}?imageView2/1/w/150/h/150`}
+            alt="品項圖片"
+          />
         ) : (
           <img className="food-img" src="/default.png" alt="品項圖片" />
         )}
