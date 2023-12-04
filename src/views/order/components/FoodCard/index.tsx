@@ -79,7 +79,7 @@ const FoodCard: React.FC<IProps> = ({
         {item.images.length !== 0 ? (
           <img
             className="food-img"
-            src={`${item.images[0]}?imageView2/1/w/150/h/150`}
+            src={`${item.images[0]}?imageView2/1/w/150/h/format/webp`}
             alt="品項圖片"
           />
         ) : (
