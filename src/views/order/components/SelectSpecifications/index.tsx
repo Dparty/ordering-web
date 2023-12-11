@@ -21,10 +21,12 @@ const SelectSpecifications: React.FC<IProps> = ({ item, onCancel, pushCart }) =>
       } as Attribute;
     });
   }, [item]);
-
   const [selectedOptions, setSelectedOptions] = useState<Map<string, string>>(
     new Map<string, string>()
   );
+  useEffect(() => {
+    setSelectedOptions(new Map<string, string>());
+  }, [item]);
   const extraTotal = useMemo(() => {
     if (!item) return 0;
     return item.attributes.reduce((total, attribute) => {
@@ -38,17 +40,14 @@ const SelectSpecifications: React.FC<IProps> = ({ item, onCancel, pushCart }) =>
     return item.pricing + extraTotal;
   }, [item, extraTotal]);
   const onSelectOption = (a: Attribute, o: Option) => {
+    const selected = selectedOptions.get(a.label);
+    if (selected === o.label) {
+      selectedOptions.delete(a.label);
+      setSelectedOptions(new Map(selectedOptions));
+      return;
+    }
     setSelectedOptions((map) => new Map(map.set(a.label, o.label)));
   };
-  useEffect(() => {
-    const selected = new Map<string, string>();
-    if (item) {
-      item.attributes.forEach((attr) => {
-        selected.set(attr.label, attr.options[0].label);
-      });
-    }
-    setSelectedOptions(selected);
-  }, [item]);
   if (!item) return null;
   return (
     <div className="select-specifications">
@@ -76,7 +75,7 @@ const SelectSpecifications: React.FC<IProps> = ({ item, onCancel, pushCart }) =>
                 className={"specifications-submit-btn specifications-submit-btn-usable"}
                 onClick={() => pushCart(item, selectedOptions)}
               >
-                + 加入购物车
+                + 加入購物車
               </button>
             </div>
           </div>
