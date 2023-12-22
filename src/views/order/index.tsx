@@ -7,11 +7,12 @@ import Menu from "./components/Menu";
 import SelectSpecifications from "./components/SelectSpecifications";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Message from "../../components/Message";
-import { restaurantApi } from "../../api/api";
+import { restaurantApi, billApi } from "../../api/api";
 import { Item, Restaurant, Table } from "@dparty/restaurant-ts-sdk";
 import { MapEqual, MapToPair, PairToMap, getCart, getPricing } from "../../utils";
 import FoodCard from "./components/FoodCard";
 import PageHeader from "../../components/PageHeder";
+import { createBill } from "../../api/api";
 
 export interface Pair {
   left: string;
@@ -70,7 +71,11 @@ const OrderPage = () => {
     setOrders(orders.filter((_, i) => i !== index));
   };
   const [disable, setDisable] = useState(false);
-  const submit = () => {
+  const cartOrders = useMemo(() => {
+    return getCart(orders, []);
+  }, [orders]);
+
+  const submit = async () => {
     if (!cartVisiable) {
       setCartVisiable(true);
       return;
@@ -80,23 +85,56 @@ const OrderPage = () => {
       itemId: order.item.id,
       options: order.options,
     }));
-    restaurantApi
-      .createBill({
-        id: table.id,
-        createBillRequest: {
-          specifications: sp,
-        },
-      })
-      .then(() => {
-        navigate("/complete");
-      })
-      .catch(() => {
-        navigate("/complete");
-      });
+
+    try {
+      const res = await createBill(table.id, { specifications: sp });
+      // console.log(res);
+
+      // const res = await billApi.createBill({
+      //   id: table.id,
+      //   createBillRequest: {
+      //     specifications: sp,
+      //   },
+      // });
+      if (res) {
+        console.log(res);
+        navigate("/complete", { state: { bill: res, cartOrders: cartOrders } });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+    // const res = billApi
+    //   .createBill({
+    //     id: table.id,
+    //     createBillRequest: {
+    //       specifications: sp,
+    //     },
+    //   })
+    //   .then((res: any) => {
+    //     console.log(res);
+    //     navigate("/complete", { state: { bill: res, cartOrders: cartOrders } });
+    //   })
+    //   .catch((res: any) => {
+    //     console.log(res);
+    //     // navigate("/complete");
+    //   });
+
+    //   .createBill({
+    //     id: table.id,
+    //     createBillRequest: {
+    //       specifications: sp,
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //     // navigate("/complete");
+    //   })
+    //   .catch((res) => {
+    //     console.log(res);
+    //     // navigate("/complete");
+    //   });
   };
-  const cartOrders = useMemo(() => {
-    return getCart(orders, []);
-  }, [orders]);
+
   return (
     <div className="order page-container">
       <PageHeader name={restaurant.name} table={table.label} />
