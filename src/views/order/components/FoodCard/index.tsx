@@ -19,6 +19,7 @@ interface IProps {
   removeCart: (item: Item, selectedOptions: Map<string, string>) => void;
   onSelect: (item: Item) => void;
   options?: Pair[];
+  editable?: boolean;
 }
 
 const FoodCard: React.FC<IProps> = ({
@@ -29,6 +30,7 @@ const FoodCard: React.FC<IProps> = ({
   removeCart,
   options = [],
   actionType,
+  editable = true,
 }) => {
   const actionTypeNode = () => {
     if (item.attributes.length !== 0 && actionType !== "cart") {
@@ -51,19 +53,27 @@ const FoodCard: React.FC<IProps> = ({
           e.stopPropagation();
         }}
       >
-        <img
-          className="action-btn"
-          onClick={() => removeCart(item, PairToMap(options))}
-          src={reducePngUrl}
-          alt="减"
-        />
-        <div className="action-normal-number">{amount ? amount : 0}</div>
-        <img
-          className="action-btn"
-          onClick={() => pushCart(item, PairToMap(options))}
-          src={addPngUrl}
-          alt="加"
-        />
+        {editable ? (
+          <>
+            <img
+              className="action-btn"
+              onClick={() => removeCart(item, PairToMap(options))}
+              src={reducePngUrl}
+              alt="减"
+            />
+            <div className="action-normal-number">{amount ? amount : 0}</div>
+            <img
+              className="action-btn"
+              onClick={() => pushCart(item, PairToMap(options))}
+              src={addPngUrl}
+              alt="加"
+            />
+          </>
+        ) : (
+          <>
+            <div className="action-normal-number">x{amount ? amount : 0}</div>
+          </>
+        )}
       </div>
     );
   };

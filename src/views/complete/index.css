@@ -2,6 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
+}
+
+.complete__detail {
+  width: 90%;
 }
 
 .complete__pickup-wrapper {
@@ -48,4 +53,16 @@
   white-space: nowrap;
   line-height: 24px;
   margin-top: 30px;
+}
+
+.complete__textNum {
+  overflow-wrap: break-word;
+  color: rgba(24, 24, 24, 1);
+  font-size: 17px;
+  font-weight: 600;
+  white-space: nowrap;
+  line-height: 24px;
+  margin-top: 20px;
+  display: flex;
+  align-items: start;
 }
