@@ -13,6 +13,7 @@ import { MapEqual, MapToPair, PairToMap, getCart, getPricing } from "../../utils
 import FoodCard from "./components/FoodCard";
 import PageHeader from "../../components/PageHeder";
 import { createBill } from "../../api/api";
+import Notification from "../../components/Notification";
 
 export interface Pair {
   left: string;
@@ -142,6 +143,19 @@ const OrderPage = () => {
         {/* 最上面的的图片 */}
         <div className="order_top-img">
           <img className="img" src={foodIntroductionUrl} alt="菜品介紹" />
+        </div>
+        <div className="page-notice">
+          <Notification
+            duration={20}
+            message={[
+              "過量飲酒危害健康",
+              "CONSUMIR BEBIDAS ALCOÓLICAS EM EXCESSO PREJUDICA A SAÚDE",
+              "EXCESSIVE DRINKING OF ALCOHOLIC BEVERAGES IS HARMFUL TO HEALTH",
+              "禁止向未滿十八歲人士銷售或提供酒精飲料",
+              "A VENDA OU DISPONIBILIZAÇÃO DE BEBIDAS ALCOÓLICAS A MENORES DE 18 ANOS É PROIBIDA",
+              "THE SALE OR SUPPLY OF ALCOHOLIC BEVERAGES TO ANYONE UNDER THE AGE OF 18 IS PROHIBITED",
+            ]}
+          />
         </div>
         {/* 中间滚动的menu */}
         <div className="order_top-menu">
